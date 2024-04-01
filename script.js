@@ -9,6 +9,9 @@ const retryButton = document.getElementById('retry-button');
 document.addEventListener('DOMContentLoaded', (event) => {
  updateBestScoresDisplay();
 });
+window.addEventListener('load', function() {
+  alert("It's loaded!")
+})
 const countdown = setInterval(() => {
  if (timeLeft > 0) {
  timeLeft--;
