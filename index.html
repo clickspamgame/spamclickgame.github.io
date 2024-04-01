@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <title>Spam Click Game</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ </div>
+ <div id="game-container">
+ <div id="background"></div>
+ <div id="best-score">Meilleur score personnel: 0</div>
+ <div id="global-best-score">Meilleur score global: 0</div>
+ <div id="player-container" onclick="drinkButton.click()">
+ <img src="Images/Player.png" alt="Character" id="game-character"> </div>
+ <div id="glass-animation"></div>
+ <div id="drink-button">Boire un shot!</div>
+ <div id="timer">Temps restant : <span id="time-left">5</span> secondes</div> <div id="score">Shots bus : <span id="shots-taken">0</span></div>
+ </div>
+ <div id="result-popup" class="hidden">
+ <div id="result-text">Score final : <span id="final-score">0</span></div> <button id="retry-button">Reessayer</button>
+ </div>
+ <script src="script.js"></script>
+</body>
+</html>
+Css :
+body, html {
+ margin: 0;
+ padding: 0;
+ font-family: Arial, sans-serif;
+}
+#game-container {
+ background-color: #F0ECE5;
+ padding: 100px;
+ box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+ border-radius: 6px;
+ margin: 50px 50px;
+ text-align: center;
+}
+#background {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-image: url('images/fond.jpg.avif'); /* Remplacer par ton image de fond
+*/
+ background-size: cover;
+ z-index: -1;
+}
+#game-character {
+ position: center;
+ z-index: 1;
+ height: 300px;
+}
+#glass-animation {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 100px; /* Ajuste la taille selon tes besoins */
+ height: 100px; /* Ajuste la taille selon tes besoins */
+ background-image: url('images/verre.png'); /* Remplacer par ton image du verre */
+ background-size: contain;
+ background-repeat: no-repeat;
+ opacity: 0; /* Initial opacity set to 0 */
+}
+#drink-button {
+ margin-top: 20px;
+}
+.hidden {
+ display: none;
+}
+#result-popup {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ background-color: white;
+ border: 2px solid black;
+ padding: 20px;
+ text-align: center;
+}
+#retry-button {
+ margin-top: 10px;
+}
+/* Animation du verre */
+.animate-glass {
+ animation: moveGlass 0.5s forwards;
+}
+@keyframes moveGlass {
+ 0% {
+ opacity: 1;
+ transform: translate(-50%, -50%) rotate(0deg);
+ }
+ 50% {
+ transform: translate(-50%, -50%) rotate(90deg);
+ }
+ 100% {
+ opacity: 0;
+ transform: translate(-50%, -50%) rotate(0deg);
+ }
+}
+#player-container {
+ cursor: pointer; /* Ajouter un curseur pointer pour indiquer qu'il est cliquable */
+}
+/* pour les formats d'utilisation différents*/
+/* Styles spécifiques pour les appareils mobiles */
+@media only screen and (max-width: 768px) {
+ /* Ajoutez vos styles spécifiques pour les appareils mobiles ici */
+}
+/* Styles spécifiques pour les tablettes */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+ /* Ajoutez vos styles spécifiques pour les tablettes ici */
+}
+/* Styles spécifiques pour les ordinateurs de bureau */
+@media only screen and (min-width: 1024px) {
+ /* Ajoutez vos styles spécifiques pour les ordinateurs de bureau ici */
+}
+Js :
+let shotsTaken = 0;
+let timeLeft = 5; // Temps en secondes
+const timerElement = document.getElementById('time-left');
+const shotsTakenElement = document.getElementById('shots-taken');
+const drinkButton = document.getElementById('drink-button');
+const resultPopup = document.getElementById('result-popup');
+const finalScore = document.getElementById('final-score');
+const retryButton = document.getElementById('retry-button');
+document.addEventListener('DOMContentLoaded', (event) => {
+ updateBestScoresDisplay();
+});
+drinkButton.addEventListener('click', () => {
+ shotsTaken++;
+ shotsTakenElement.innerText = shotsTaken;
+ animateCharacter(); // Appeler la fonction animateCharacter lorsque le bouton est
+cliqué
+});
+const countdown = setInterval(() => {
+ if (timeLeft > 0) {
+ timeLeft--;
+ timerElement.innerText = timeLeft;
+ } else {
+ clearInterval(countdown);
+ drinkButton.disabled = true;
+ showResult();
+ }
+}, 1000);
+function animateCharacter() {
+ const glass = document.getElementById('glass-animation');
+ glass.classList.remove('animate-glass'); // Supprimer la classe d'animation void glass.offsetWidth; // Déclencher une reprise pour redémarrer l'animation glass.classList.add('animate-glass'); // Ajouter la classe d'animation pour
+déclencher l'animation
+}
+function showResult() {
+ finalScore.innerText = shotsTaken;
+ updateScores(shotsTaken); // Mettre à jour le score à la fin du jeu
+ resultPopup.classList.remove('hidden');
+}
+function updateBestScoresDisplay() {
+ const bestScore = localStorage.getItem('bestScore') || 0;
+ document.getElementById('best-score').innerText = `Meilleur score personnel:
+${bestScore}`;
+ const globalBestScore = localStorage.getItem('globalBestScore') || 0;
+ document.getElementById('global-best-score').innerText = `Meilleur score global:
+${globalBestScore}`;
+}
+function updateScores(currentScore) {
+ let bestScore = localStorage.getItem('bestScore') || 0;
+ if (currentScore > bestScore) {
+ localStorage.setItem('bestScore', currentScore);
+ bestScore = currentScore;
+ }
+ let globalBestScore = localStorage.getItem('globalBestScore') || 0;
+ if (currentScore > globalBestScore) {
+ localStorage.setItem('globalBestScore', currentScore);
+ globalBestScore = currentScore;
+ }
+ updateBestScoresDisplay();
+}
+retryButton.addEventListener('click', () => {
+ window.location.reload();
+});
