@@ -54,6 +54,6 @@ function updateScores(currentScore) {
  }
  updateBestScoresDisplay();
 }
-retryButton.addEventListener('click', () => {
+function retry() {
  window.location.reload();
-});
+}
