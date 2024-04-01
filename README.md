@@ -1,0 +1,2 @@
+# spamclickgame.github.io
+test
