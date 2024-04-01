@@ -17,7 +17,7 @@ body, html {
  left: 0;
  width: 100%;
  height: 100%;
- background-image: url('images/fond.jpg.avif'); /* Remplacer par ton image de fond
+ background-image: url('fond.jpg.avif'); /* Remplacer par ton image de fond
 */
  background-size: cover;
  z-index: -1;
@@ -34,7 +34,7 @@ body, html {
  transform: translate(-50%, -50%);
  width: 100px; /* Ajuste la taille selon tes besoins */
  height: 100px; /* Ajuste la taille selon tes besoins */
- background-image: url('images/verre.png'); /* Remplacer par ton image du verre */
+ background-image: url('verre.png'); /* Remplacer par ton image du verre */
  background-size: contain;
  background-repeat: no-repeat;
  opacity: 0; /* Initial opacity set to 0 */
