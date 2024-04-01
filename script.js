@@ -9,11 +9,6 @@ const retryButton = document.getElementById('retry-button');
 document.addEventListener('DOMContentLoaded', (event) => {
  updateBestScoresDisplay();
 });
-drinkButton.addEventListener('click', () => {
- shotsTaken++;
- shotsTakenElement.innerText = shotsTaken;
- animateCharacter(); // Appeler la fonction animateCharacter lorsque le bouton est cliqué
-});
 const countdown = setInterval(() => {
  if (timeLeft > 0) {
  timeLeft--;
@@ -24,6 +19,11 @@ const countdown = setInterval(() => {
  showResult();
  }
 }, 1000);
+function clickdrink() {
+ shotsTaken++;
+ shotsTakenElement.innerText = shotsTaken;
+ animateCharacter(); // Appeler la fonction animateCharacter lorsque le bouton est cliqué
+}
 function animateCharacter() {
  const glass = document.getElementById('glass-animation');
  glass.classList.remove('animate-glass'); // Supprimer la classe d'animation void glass.offsetWidth; // Déclencher une reprise pour redémarrer l'animation glass.classList.add('animate-glass'); // Ajouter la classe d'animation pourdéclencher l'animation
