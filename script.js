@@ -1,16 +1,24 @@
 let shotsTaken = 0;
 let timeLeft = 5; // Temps en secondes
-const timerElement = document.getElementById('time-left');
-const shotsTakenElement = document.getElementById('shots-taken');
-const drinkButton = document.getElementById('drink-button');
-const resultPopup = document.getElementById('result-popup');
-const finalScore = document.getElementById('final-score');
-const retryButton = document.getElementById('retry-button');
+let timerElement;
+let shotsTakenElement;
+let drinkButton;
+let resultPopup;
+let finalScore;
+let retryButton;
+
+
+window.addEventListener('load', function() {
+timerElement = document.getElementById('time-left');
+shotsTakenElement = document.getElementById('shots-taken');
+drinkButton = document.getElementById('drink-button');
+resultPopup = document.getElementById('result-popup');
+finalScore = document.getElementById('final-score');
+retryButton = document.getElementById('retry-button');
 document.addEventListener('DOMContentLoaded', (event) => {
  updateBestScoresDisplay();
 });
-window.addEventListener('load', function() {
-  alert("It's loaded!")
+
 })
 const countdown = setInterval(() => {
  if (timeLeft > 0) {
