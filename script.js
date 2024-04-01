@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 drinkButton.addEventListener('click', () => {
  shotsTaken++;
  shotsTakenElement.innerText = shotsTaken;
- animateCharacter(); // Appeler la fonction animateCharacter lorsque le bouton est
-cliqué
+ animateCharacter(); // Appeler la fonction animateCharacter lorsque le bouton est cliqué
 });
 const countdown = setInterval(() => {
  if (timeLeft > 0) {
@@ -27,8 +26,7 @@ const countdown = setInterval(() => {
 }, 1000);
 function animateCharacter() {
  const glass = document.getElementById('glass-animation');
- glass.classList.remove('animate-glass'); // Supprimer la classe d'animation void glass.offsetWidth; // Déclencher une reprise pour redémarrer l'animation glass.classList.add('animate-glass'); // Ajouter la classe d'animation pour
-déclencher l'animation
+ glass.classList.remove('animate-glass'); // Supprimer la classe d'animation void glass.offsetWidth; // Déclencher une reprise pour redémarrer l'animation glass.classList.add('animate-glass'); // Ajouter la classe d'animation pourdéclencher l'animation
 }
 function showResult() {
  finalScore.innerText = shotsTaken;
